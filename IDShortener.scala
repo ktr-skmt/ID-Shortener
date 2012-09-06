@@ -6,7 +6,7 @@ class IDShortener {
     val buffer = new ArrayBuffer[Byte]
     var decimal = id
     def mod(decimal : Long) : Int = (decimal % BASE).toInt
-    if (decimal == 0) buffer += map(mod)
+    if (decimal == 0) buffer += map(mod(0))
     else if (decimal < 0) return ""
     else while (decimal != 0) {
       buffer += map(mod(decimal))
