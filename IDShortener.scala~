@@ -1,16 +1,17 @@
 import _root_.scala.collection.mutable.ArrayBuffer
 
 class IDShortener {
-  private val BASE = 62
+  private val NUMBER = 62
   def shorten(id : Long) : String = {
     val buffer = new ArrayBuffer[Byte]
     var decimal = id
-    def mod(decimal : Long) : Int = (decimal % BASE).toInt
+    var mod = 0
     if (decimal == 0) buffer += map(mod)
     else if (decimal < 0) return ""
     else while (decimal != 0) {
-      buffer += map(mod(decimal))
-      decimal /= BASE
+      mod = (decimal % NUMBER).toInt
+      buffer += map(mod)
+      decimal /= NUMBER
     }
     new String(buffer.reverse.toArray, "US-ASCII")
   }
